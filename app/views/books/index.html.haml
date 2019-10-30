@@ -1,0 +1,24 @@
+%p#notice= notice
+%h1 Books
+%table
+  %thead
+    %tr
+      %th{:colspan => "3"}
+  %tbody
+    %tr
+      %td= 'Name'
+      %td= 'Author'
+      %td= 'Status'
+    - @books.each do |book|
+      %tr
+        - if book.cover?
+          %td= image_tag book.cover.url
+        - else
+          %td= image_tag "no_cover.png", size: "50x50"
+        %td= book.name
+        %td= book.status
+        %td= link_to 'Show', book
+        %td= link_to 'Edit', edit_book_path(book)
+        %td= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' }
+%br/
+= link_to 'New Book', new_book_path
