@@ -11,7 +11,5 @@ class Book
   field :user_id, type: String, default: -> { 0 }
 
   mount_uploader :cover, CoverUploader
-
-  belongs_to :user
   has_many :readers
 end

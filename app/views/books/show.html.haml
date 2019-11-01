@@ -5,17 +5,20 @@
 %br/
 = @book.likes_counter
 - if @book.status?
-  = button_tag "Take", class: "btn btn-outline-success", type: "button"
+  = button_to "Take", book_readers_path(@book), class: "btn btn-outline-success", type: "button", method: :post
 - else
-  = button_tag "Take", class: "btn btn-outline-success", type: "button", disabled: "True"
+  - if @reader.exists?
+    = button_to "Return", book_reader_path(@book), class: "btn btn-outline-warning", type: "button", action: "destroy", method: :delete
+  - else
+    = button_tag "Take", class: "btn btn-outline-success", type: "button", disabled: "True"
 %br/
 - if @book.cover?
-  = image_tag book.cover.url
+  = image_tag @book.cover.url
 - else
   = image_tag "no_cover.png"
 = @book.description
 %br/
-= @book.comment
+-#= @book.comment
 %br/
 = link_to 'Edit', edit_book_path(@book)
 |

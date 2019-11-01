@@ -7,12 +7,11 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-
+User.create(email: 'admin@gmail.com', password: 'password')
 10.times do
-  Book.create(name: Faker::Book.title,
+  Book.create!(name: Faker::Book.title,
               cover: Faker::Avatar.image,
               description: Faker::Lorem.paragraph,
               likes_counter: Faker::Number.within(range: 1..10),
-              author: Faker::Book.author,
-              comment: Faker::ChuckNorris.fact)
+              author: Faker::Book.author)
 end
