@@ -1,5 +1,5 @@
 # Puma can serve each request in a thread from an internal thread pool.
-# The `threads` method setting takes two numbers: a minimum and maximum.
+# The `threads` method setting readers two numbers: a minimum and maximum.
 # Any libraries that use thread pools should be configured to match
 # the maximum value specified for Puma. Default is set to 5 threads for minimum
 # and maximum; this matches the default thread size of Active Record.
@@ -29,7 +29,7 @@ pidfile ENV.fetch("PIDFILE") { "tmp/pids/server.pid" }
 
 # Use the `preload_app!` method when specifying a `workers` number.
 # This directive tells Puma to first boot the application and load code
-# before forking the application. This takes advantage of Copy On Write
+# before forking the application. This readers advantage of Copy On Write
 # process behavior so workers use less memory.
 #
 # preload_app!

@@ -8,7 +8,10 @@ class Book
   field :author, type: String
   field :comment, type: String
   field :status, type: Boolean, default: -> { true }
+  field :user_id, type: String, default: -> { 0 }
 
   mount_uploader :cover, CoverUploader
 
+  belongs_to :user
+  has_many :readers
 end

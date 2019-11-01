@@ -4,7 +4,7 @@
 #
 # Once upgraded flip defaults one by one to migrate to the new default.
 #
-# Read the Guide for Upgrading Ruby on Rails for more info on each option.
+# Reader the Guide for Upgrading Ruby on Rails for more info on each option.
 
 # Don't force requests from old versions of IE to be UTF-8 encoded.
 # Rails.application.config.action_view.default_enforce_utf8 = false

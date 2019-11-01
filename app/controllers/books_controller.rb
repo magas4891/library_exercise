@@ -1,5 +1,5 @@
 class BooksController < ApplicationController
-  before_action :set_book, only: [:show, :edit, :update, :destroy]
+  before_action :set_book, only: %i[show edit update destroy take return]
 
   # GET /books
   # GET /books.json
@@ -61,6 +61,15 @@ class BooksController < ApplicationController
     end
   end
 
+  def take
+    @book.user_id = current_user._id
+    redirect_to @book
+  end
+
+  def return
+    @book.user_id = 0
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
