@@ -12,6 +12,8 @@ class BooksController < ApplicationController
   # GET /books/1.json
   def show
     @comments = Comment.where(book_id: @book).order('created_at DESC')
+    @histories = History.where(book_id: @book)
+    p @histories.count
   end
 
   # GET /books/new
@@ -63,6 +65,8 @@ class BooksController < ApplicationController
     end
   end
 
+
+
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_book
@@ -75,6 +79,8 @@ class BooksController < ApplicationController
     end
 
     def book_owner
-      @reader = Reader.where(user_id: current_user.id, book_id: @book.id)
+      if current_user
+        @reader = Reader.where(user_id: current_user.id, book_id: @book.id)
+      end
     end
 end

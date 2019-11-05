@@ -20,6 +20,13 @@
 %br/
 -#= @book.comment
 %br/
+- if @histories
+  - @histories.each do |f|
+    = f.name
+    = f.take_date
+    = f.return_date
+    %br/
+%br/
 = link_to 'Edit', edit_book_path(@book)
 |
 = link_to 'Back', books_path

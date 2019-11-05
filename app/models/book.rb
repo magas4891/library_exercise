@@ -9,7 +9,10 @@ class Book
   field :comment, type: String
   field :status, type: Boolean, default: -> { true }
   field :user_id, type: String, default: -> { 0 }
+  field :taken, type: Integer, default: -> { 0 }
 
   mount_uploader :cover, CoverUploader
   has_many :readers
+  has_many :comments
+  has_many :histories
 end

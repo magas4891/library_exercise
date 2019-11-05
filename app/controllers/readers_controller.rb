@@ -3,13 +3,16 @@
 class ReadersController < ApplicationController
   before_action :authenticate_user!, only: [:create]
   before_action :find_book
+  before_action :create_history, only: [:create]
   before_action :find_reader, only: [:destroy]
+  before_action :update_history, only: [:destroy]
 
   def create
     unless already_taken?
       @book.update(status: false)
       @book.user_id = current_user.id
       Reader.create(user_id: current_user.id, book_id: @book.id)
+      @book.inc(taken: 1)
       redirect_to book_path(@book)
     end
   end
@@ -32,5 +35,15 @@ class ReadersController < ApplicationController
 
   def already_taken?
     Reader.where(book_id: params[:book_id]).exists?
+  end
+
+  def create_history
+    History.create(name: current_user.name, book_id: @book.id, take_date: Time.now)
+  end
+
+  def update_history
+    @history = History.where(user_id: current_user.id, book_id: @book.id,
+                             return_date: nil)
+    @history.update(return_date: Time.now)
   end
 end
