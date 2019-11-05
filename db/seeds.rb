@@ -19,5 +19,6 @@ end
                cover: Faker::Avatar.image,
                description: Faker::Lorem.paragraph,
                likes_counter: Faker::Number.within(range: 1..10),
-               author: Faker::Book.author)
+               author: Faker::Book.author,
+               user_id: User.first.id)
 end

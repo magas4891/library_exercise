@@ -5,10 +5,11 @@
 %br/
 = @book.likes_counter
 - if @book.status?
-  = button_to "Take", book_readers_path(@book), class: "btn btn-outline-success", type: "button", method: :post
+  -#= button_to "Take", book_readers_path(@book), class: "btn btn-outline-success", type: "button", method: :post
+  = button_to "Take", take_book_path(@book.id), class: "btn btn-outline-success", type: "button", method: "put"
 - else
-  - if @reader.exists?
-    = button_to "Return", book_reader_path(@book), class: "btn btn-outline-warning", type: "button", action: "destroy", method: :delete
+  - if @book.user_id == current_user.id
+    = button_to "Return", return_book_path(@book.id), class: "btn btn-outline-warning", type: "button", method: "put"
   - else
     = button_tag "Take", class: "btn btn-outline-success", type: "button", disabled: "True"
 %br/

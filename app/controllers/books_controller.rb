@@ -13,7 +13,6 @@ class BooksController < ApplicationController
   def show
     @comments = Comment.where(book_id: @book).order('created_at DESC')
     @histories = History.where(book_id: @book)
-    p @histories.count
   end
 
   # GET /books/new
@@ -65,10 +64,19 @@ class BooksController < ApplicationController
     end
   end
 
+  def take
+    @book.inc(taken: 1)
+    @book.update(user_id: current_user.id, status: false)
 
+    redirect_to @book
+  end
+
+  def return
+    @book.update(user_id: User.first.id, status: true)
+    redirect_to @book
+  end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_book
       @book = Book.find(params[:id])
     end
