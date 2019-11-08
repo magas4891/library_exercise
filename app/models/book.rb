@@ -15,4 +15,5 @@ class Book
   belongs_to :user
   has_many :comments
   has_many :histories
+  has_many :likes
 end

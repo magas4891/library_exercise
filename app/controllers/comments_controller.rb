@@ -2,8 +2,6 @@
 
 class CommentsController < ApplicationController
   def index
-    # @comments = Comment.all.order('created_at DESC')
-    # user_activity('showing_index_comments') if current_user
   end
 
   def create

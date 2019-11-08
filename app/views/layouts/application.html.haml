@@ -5,7 +5,11 @@
     %title LibraryExercise
     = csrf_meta_tags
     = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = stylesheet_link_tag    'rating', media: 'all', 'data-turbolinks-track': 'reload'
+    -#= stylesheet_link_tag 'ttps://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'
     = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'jquery-3.4.1', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'rating', 'data-turbolinks-track': 'reload'
   %body
     - if current_user
       %h3 #{current_user.name}

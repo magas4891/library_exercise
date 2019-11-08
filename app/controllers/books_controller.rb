@@ -1,6 +1,9 @@
+# frozen_string_literal: true
+
 class BooksController < ApplicationController
   before_action :set_book, only: %i[show edit update destroy take return]
-  before_action :book_owner, only: [:show]
+  before_action :set_history, only: [:return]
+  before_action :already_liked, only: [:show]
 
   # GET /books
   # GET /books.json
@@ -12,7 +15,8 @@ class BooksController < ApplicationController
   # GET /books/1.json
   def show
     @comments = Comment.where(book_id: @book).order('created_at DESC')
-    @histories = History.where(book_id: @book)
+    @histories = @book.histories
+    @like_owner = true if already_liked
   end
 
   # GET /books/new
@@ -21,8 +25,7 @@ class BooksController < ApplicationController
   end
 
   # GET /books/1/edit
-  def edit
-  end
+  def edit; end
 
   # POST /books
   # POST /books.json
@@ -67,28 +70,38 @@ class BooksController < ApplicationController
   def take
     @book.inc(taken: 1)
     @book.update(user_id: current_user.id, status: false)
-
+    @book.histories.create!(user_id: current_user.id, name: current_user.name,
+                            take_date: Time.now)
     redirect_to @book
   end
 
   def return
+    @history.update(return_date: Time.now)
     @book.update(user_id: User.first.id, status: true)
     redirect_to @book
   end
 
+  def rating
+    # @book.rating =
+  end
+
   private
-    def set_book
-      @book = Book.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def book_params
-      params.require(:book).permit(:name, :description, :author, :cover)
-    end
+  def set_book
+    @book = Book.find(params[:id])
+  end
 
-    def book_owner
-      if current_user
-        @reader = Reader.where(user_id: current_user.id, book_id: @book.id)
-      end
-    end
+  def book_params
+    params.require(:book).permit(:name, :description, :author, :cover)
+  end
+
+  def set_history
+    @history = @book.histories.where(name: current_user.name, book_id: @book.id,
+                                     return_date: nil )
+  end
+
+  def already_liked
+    Like.where(user_id: current_user.id,
+               book_id: params[:id]).exists?
+  end
 end
