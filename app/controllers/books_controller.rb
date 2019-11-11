@@ -3,7 +3,6 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[show edit update destroy take return]
   before_action :set_history, only: [:return]
-  before_action :already_liked, only: [:show]
 
   # GET /books
   # GET /books.json
