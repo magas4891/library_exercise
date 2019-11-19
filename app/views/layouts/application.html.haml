@@ -11,6 +11,47 @@
     = javascript_include_tag 'jquery-3.4.1', 'data-turbolinks-track': 'reload'
     = javascript_include_tag 'rating', 'data-turbolinks-track': 'reload'
   %body
-    - if current_user
-      %h3 #{current_user.name}
+    #wrapper-header{:style => "width: 100%; opacity: 1;"}
+      #main-header.object
+        .logo
+          %img{:alt => "logo platz", :height => "38", :src => "logo-burst.png", :width => "90"}/
+        #main_tip_search
+          %form
+            %input#tip_search_input{:autocomplete => "off", :list => "search", :name => "search", :required => "", :type => "text"}/
+        #stripes
+
+    #wrapper-navbar{:style => "opacity: 1; height: 60px;"}
+      .navbar.object
+        #wrapper-sorting
+          #wrapper-title-1
+            .top-rated.object User menu
+            #fleche-nav-1
+          -##wrapper-title-2
+          -#  %a{:href => "#"}
+          -#    .recent.object Recent
+          -#  #fleche-nav-2{:style => "transform: rotate(0deg) scale(1); opacity: 0.5;"}
+          -##wrapper-title-3
+          -#  %a{:href => "#"}
+          -#    .oldies.object Oldies
+          -#  #fleche-nav-3{:style => "transform: rotate(0deg) scale(1); opacity: 0.5;"}
+        #wrapper-bouton-icon
+          #bouton-ai
+            = link_to "#" do
+              = image_tag "icon-ai.svg", :alt => "illustrator", :height => "28", :title => "Illustrator", :width => "28"
+          #bouton-psd
+            = link_to "#" do
+              = image_tag "icon-psd.svg", :alt => "photoshop", :height => "28", :title => "Photoshop", :width => "28"
+          #bouton-theme
+            = link_to "#" do
+              = image_tag "icon-themes.svg", :alt => "theme", :height => "28", :title => "Theme", :width => "28"
+          #bouton-font
+            = link_to "#" do
+              = image_tag "icon-font.svg", :alt => "font", :height => "28", :title => "Font", :width => "28"
+          #bouton-photo
+            = link_to "#" do
+              = image_tag "icon-photo.svg", :alt => "photo", :height => "28", :title => "Photo", :width => "28"
+          #bouton-premium
+            = link_to "#" do
+              = image_tag "icon-premium.svg", :alt => "premium", :height => "28", :title => "Premium", :width => "28"
+
     = yield
