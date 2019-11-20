@@ -95,6 +95,7 @@ ul {
 body,html{
   padding:0;margin:0;
   background-color:#F4F4F4;
+    width: 100%;
 }
 
 .cache{
@@ -129,11 +130,12 @@ body,html{
 /*----------------------------*/
 
 #wrapper-header{
-  float:left;
-  width:105%;
+
+  //float:left;
+  width:100%;
   height:65px;
   background-color:#2E2D30;
-  opacity:0;
+  //opacity:0;
 }
 
 #main-header{
@@ -241,10 +243,13 @@ body,html{
 /*----------------------------*/
 
 #wrapper-container{
-  float:left;
-  width:100%;
-  height:auto;
-  margin: 10px 20px;
+  text-align: center;
+  border: 1px solid black;
+  //padding: 10px 10%;
+  width: 980px;
+  position: relative;
+  margin-left: -480px;
+  left: 50%;
 }
 
 .container,.container-footer {
@@ -863,3 +868,6 @@ body,html{
 
 }
 
+#my-contaiber {
+  display: block !important;
+}

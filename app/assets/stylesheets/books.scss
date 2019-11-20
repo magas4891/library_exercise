@@ -1,12 +1,30 @@
 // Place all the styles related to the Books controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-.about {
-  display: flex;
-  flex-direction: row;
-  //height: 300px;
-}
-.cover {
-  //width: 30%;
+.title-text {
+  font-size: 30px;
+  font-family: 'Calistoga', cursive;
 }
 
+.title-text-2 {
+  font-size: 24px;
+  font-family: 'Calistoga', cursive;
+}
+
+.about {
+  font-family: 'Roboto', sans-serif;
+  display: flex;
+}
+.cover {
+  width: 30%;
+  margin: 10px 20px;
+}
+
+.wrapper-desc {
+  margin: 10px 0;
+}
+
+.text-desc {
+  text-indent: 20px;
+  text-align: justify;
+}
