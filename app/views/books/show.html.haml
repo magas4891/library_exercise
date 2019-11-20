@@ -10,34 +10,38 @@
         = image_tag @book.cover.url
       - else
         = image_tag "no_cover.png"
+      .func-buttons
+        - if @book.status?
+          = button_to "Take", take_book_path(@book.id), class: "btn btn-outline-success", type: "button", method: "put"
+        - else
+          - if @book.user_id == current_user.id
+            = button_to "Return", return_book_path(@book.id), class: "btn btn-outline-warning", type: "button", method: "put"
+          - else
+            = button_to "Take", class: "btn btn-outline-success", type: "button", disabled: "True"
+        -#.like-button
+        = @book.likes_counter
+        - if @like_owner
+          = button_to "Like", book_likes_path(@book.id), type: "button", disabled: "True"
+        - else
+          = button_to "Like", book_likes_path(@book.id), type: "button", method: "post"
     .text-desc
       = @book.description
+  .histories
+    %thead
+      %tr
+        %td= 'Reader'
+        %td= 'Take'
+        %td= 'Return'
+    %tbody
+      - if @histories
+        - @histories.each do |f|
+        %tr
 
-  - if @book.status?
-    = button_to "Take", take_book_path(@book.id), class: "btn btn-outline-success", type: "button", method: "put"
-  - else
-    - if @book.user_id == current_user.id
-      = button_to "Return", return_book_path(@book.id), class: "btn btn-outline-warning", type: "button", method: "put"
-    - else
-      = button_to "Take", class: "btn btn-outline-success", type: "button", disabled: "True"
-  %br/
-  - if @like_owner
-    = button_to "Like", book_likes_path(@book.id), type: "button", disabled: "True"
-  - else
-    = button_to "Like", book_likes_path(@book.id), type: "button", method: "post"
-  = @book.likes_counter
-  %br/
+          %td= f.name
+          %td= f.take_date
+          %td= f.return_date
 
-  %br/
-  -#= @book.comment
-  %br/
-  - if @histories
-    - @histories.each do |f|
-      = f.name
-      = f.take_date
-      = f.return_date
-      %br/
-  %br/
+
   = link_to 'Edit', edit_book_path(@book)
   |
   = link_to 'Back', books_path

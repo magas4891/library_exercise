@@ -32,6 +32,10 @@
   margin: 10px 20px;
 }
 
+.cover>img {
+  width: 100%;
+}
+
 .wrapper-desc {
   margin: 10px 0;
 }
@@ -39,4 +43,15 @@
 .text-desc {
   text-indent: 20px;
   text-align: justify;
+}
+
+.available:hover {
+  cursor: not-allowed;
+}
+
+.func-buttons {
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 0;
+  align-items: center;
 }

@@ -17,10 +17,10 @@
               %td= book.name
 
               - if book.status?
-                %td= 'Avilable'
+                %td= 'Available'
               - else
-                %td{title: "#{book.user.name}"}
-                  = "Not avilable"
+                %td.available{title: "#{book.user.name}"}
+                  = "Not available"
               %td= link_to 'Show', book
               -#%td= link_to 'Edit', edit_book_path(book)
               -#%td= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' }
