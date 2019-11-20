@@ -1,119 +1,43 @@
-#wrapper-container
-  .container.object
-  #main-container
-    .title-item
-      .title-icon
-      .title-text
-        = @book.name
-      .title-text-2
-        Author:
-        = @book.author
-    .about
-      .cover
-        - if @book.cover?
-          = image_tag @book.cover.url
-        - else
-          = image_tag "no_cover.png"
-      .wrapper-desc
-        -#.icon-desc
-        -#  %img{:alt => "", :height => "24", :src => "img/icon-desc.svg", :width => "24"}/
-        .text-desc Lorem ipsum dolor sit amet, consectetuer adipiscing elit. Aenean commodo ligula eget dolor. Aenean massa. Cum sociis natoque penatibus et magnis dis parturient montes, nascetur ridiculus mus. Donec quam felis, ultricies nec, pellentesque eu, pretium quis, sem.
+#book-content
+  .title-text
+    = @book.name
+  .title-text-2
+    Author:
+    = @book.author
+  .about
+    .cover
+      - if @book.cover?
+        = image_tag @book.cover.url
+      - else
+        = image_tag "no_cover.png"
+    .text-desc
+      = @book.description
 
-    .post-reply
-      -#.image-reply-post
-      .name-reply-post Igor vlademir
-      .text-reply-post Awesome mockup, i like it very much ! It will help me for my website i was looking for since few days. Thank you a lot.
-    .post-reply-2
-      .image-reply-post-2
-      .name-reply-post-2 Nathan Shaw
-      .text-reply-post-2 Well done ! I like the way you did it. Awesome !
-    .post-send
-      #main-post-send
-        #title-post-send Add your comment
-        %form#contact{:action => "/onclickprod/formsubmit_op.asp", :method => "post"}
-          %fieldset
-            %p
-              %textarea#message{:cols => "30", :maxlength => "500", :name => "message", :placeholder => "Votre Message", :rows => "4", :tabindex => "5"}
-          %div{:style => "text-align:center;"}
-            %input{:name => "envoi", :type => "submit", :value => "Envoyer"}/
-    #wrapper-thank
-      .thank
-        .thank-text
-          bu
-          %span{:style => "letter-spacing:-5px;"}> rs
-          tfly
-    #main-container-footer
-      .container-footer
-        #row-1f
-          .text-row-1f
-            %span{:style => "font-weight:600;font-size:15px;color:#666;line-height:250%;text-transform:uppercase;letter-spacing:1.5px;"} What is Burstfly
-            = succeed "Burstfly" do
-              %br/
-        #row-2f
-          .text-row-2f
-            %span{:style => "font-weight:600;font-size:15px;color:#666;line-height:250%;text-transform:uppercase;letter-spacing:1.5px;"} How does it work
-            = succeed "Burstfly" do
-              %br/
-        #row-3f
-          .text-row-3f
-            %span{:style => "font-weight:600;font-size:15px;color:#666;line-height:250%;text-transform:uppercase;letter-spacing:1.5px;"} Get in touch!
-            = succeed "Subscribe" do
-              %br/
-        #row-4f
-          .text-row-4f
-            %span{:style => "font-weight:600;font-size:15px;color:#666;line-height:250%;text-transform:uppercase;letter-spacing:1.5px;"} Newsletter
-            = succeed "You" do
-              %br/
-          #main_tip_newsletter
-            %form
-              %input#tip_newsletter_input{:autocomplete => "off", :list => "newsletter", :name => "newsletter", :required => "", :type => "text"}/
-    #wrapper-copyright
-      .copyright
-        .copy-text.object
-          Copyright © 2018. Template by
-          %a{:href => "https://designseer.com/", :style => "color:#D0D1D4;"} DesignSeer
-        .wrapper-navbouton
-          .google.object g
-          .facebook.object f
-          .linkin.object i
-          .dribbble.object d
+  - if @book.status?
+    = button_to "Take", take_book_path(@book.id), class: "btn btn-outline-success", type: "button", method: "put"
+  - else
+    - if @book.user_id == current_user.id
+      = button_to "Return", return_book_path(@book.id), class: "btn btn-outline-warning", type: "button", method: "put"
+    - else
+      = button_to "Take", class: "btn btn-outline-success", type: "button", disabled: "True"
+  %br/
+  - if @like_owner
+    = button_to "Like", book_likes_path(@book.id), type: "button", disabled: "True"
+  - else
+    = button_to "Like", book_likes_path(@book.id), type: "button", method: "post"
+  = @book.likes_counter
+  %br/
 
-
-
--#%h1= @book.name
--#%br/
--#%h3= @book.author
--#%br/
--#-#= @book.likes_counter
--#- if @book.status?
--#  = button_to "Take", take_book_path(@book.id), class: "btn btn-outline-success", type: "button", method: "put"
--#- else
--#  - if @book.user_id == current_user.id
--#    = button_to "Return", return_book_path(@book.id), class: "btn btn-outline-warning", type: "button", method: "put"
--#  - else
--#    = button_to "Take", class: "btn btn-outline-success", type: "button", disabled: "True"
--#%br/
--#- if @like_owner
--#  = button_to "Like", book_likes_path(@book.id), type: "button", disabled: "True"
--#- else
--#  = button_to "Like", book_likes_path(@book.id), type: "button", method: "post"
--#= @book.likes_counter
--#%br/
--#- if @book.cover?
--#  = image_tag @book.cover.url
--#- else
--#  = image_tag "no_cover.png"
--#= @book.description
--#%br/
--#-#= @book.comment
--#%br/
--#- if @histories
--#  - @histories.each do |f|
--#    = f.name
--#    = f.take_date
--#    = f.return_date
--#    %br/
--#%br/
--#= link_to 'Edit', edit_book_path(@book)
--#|
--#= link_to 'Back', books_path
+  %br/
+  -#= @book.comment
+  %br/
+  - if @histories
+    - @histories.each do |f|
+      = f.name
+      = f.take_date
+      = f.return_date
+      %br/
+  %br/
+  = link_to 'Edit', edit_book_path(@book)
+  |
+  = link_to 'Back', books_path
