@@ -27,19 +27,19 @@
     .text-desc
       = @book.description
   .histories
-    %thead
-      %tr
-        %td= 'Reader'
-        %td= 'Take'
-        %td= 'Return'
-    %tbody
-      - if @histories
-        - @histories.each do |f|
+    %table.table
+      %thead.thead-dark
         %tr
-
-          %td= f.name
-          %td= f.take_date
-          %td= f.return_date
+          %td= 'Reader'
+          %td= 'Take'
+          %td= 'Return'
+      %tbody
+        - if @histories
+          - @histories.each do |f|
+            %tr
+              %td= f.name
+              %td= f.take_date
+              %td= f.return_date
 
 
   = link_to 'Edit', edit_book_path(@book)

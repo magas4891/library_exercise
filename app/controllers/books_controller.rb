@@ -8,6 +8,10 @@ class BooksController < ApplicationController
   # GET /books.json
   def index
     @books = Book.all
+    @books.each do |book|
+      book.update(rank: book.taken + book.likes_counter)
+    end
+    @top_books = Book.all.order('rank desc)').limit(5)
   end
 
   # GET /books/1
@@ -84,6 +88,10 @@ class BooksController < ApplicationController
     # @book.rating =
   end
 
+  def top_five
+
+
+  end
   private
 
   def set_book

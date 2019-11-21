@@ -10,6 +10,7 @@ class Book
   field :status, type: Boolean, default: -> { true }
   field :user_id, type: Object, default: -> { 0 }
   field :taken, type: Integer, default: -> { 0 }
+  field :rank, type: Integer, default: -> { 0 }
 
   mount_uploader :cover, CoverUploader
   belongs_to :user

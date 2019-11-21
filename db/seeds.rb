@@ -12,13 +12,14 @@ User.create(email: 'user2@gmail.com', password: 'password', name: Faker::Interne
 10.times do
   User.create!(email: Faker::Internet.email,
                password: Faker::Internet.password,
-               name: Faker::Internet.username)
+               name: Faker::Name.name)
 end
 20.times do
   Book.create!(name: Faker::Book.title,
                cover: Faker::Avatar.image,
-               description: Faker::Lorem.paragraph,
-               likes_counter: Faker::Number.within(range: 1..10),
+               description: Faker::Lorem.paragraphs(number: 3),
+               likes_counter: Faker::Number.within(range: 1..50),
+               taken: Faker::Number.within(range: 1..10),
                author: Faker::Book.author,
                user_id: User.first.id)
 end

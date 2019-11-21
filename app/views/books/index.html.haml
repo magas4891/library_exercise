@@ -1,12 +1,14 @@
 #books-index
   .content
-    .books-index
+    = render 'layouts/top-five'
+    .books-index-content
       %table.table.table-hover
         %thead
           %tr
+            %td= ' '
             %td= 'Name'
-            %td= 'Author'
             %td= 'Status'
+            %td= ' '
         %tbody
           - @books.each do |book|
             %tr
@@ -25,28 +27,9 @@
               -#%td= link_to 'Edit', edit_book_path(book)
               -#%td= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' }
 
--#%h1 Books
--#%table.table.table-hover
--#  %thead
--#    %tr
--#      %td= 'Name'
--#      %td= 'Author'
--#      %td= 'Status'
--#  %tbody
--#    - @books.each do |book|
--#      %tr
--#        - if book.cover?
--#          %td= image_tag book.cover.url
--#        - else
--#          %td= image_tag "no_cover.png", size: "50x50"
--#        %td= book.name
--#        %td= book.status
--#        %td= link_to 'Show', book
--#        -#%td= link_to 'Edit', edit_book_path(book)
--#        -#%td= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' }
--#%br/
--#= link_to 'New Book', new_book_path
--#%br/
--#= link_to "Sign UP", new_user_registration_path
--#= link_to "Sign IN", new_user_session_path
--#= link_to "Sign_OUT", destroy_user_session_path, method: :delete
+%br/
+= link_to 'New Book', new_book_path
+%br/
+= link_to "Sign UP", new_user_registration_path
+= link_to "Sign IN", new_user_session_path
+= link_to "Sign_OUT", destroy_user_session_path, method: :delete
