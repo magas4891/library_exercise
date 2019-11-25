@@ -7,6 +7,11 @@
   margin: 15px;
 }
 
+.book-header {
+  display: flex;
+  justify-content: space-between;
+}
+
 .books-index-content {
   display: flex;
   flex-wrap: wrap;
@@ -28,16 +33,21 @@
   display: flex;
 }
 .cover {
-  width: 300px;
+  min-width: 240px;
   margin: 10px 20px;
 }
 
 .cover>img {
   width: 100%;
+  margin-bottom: 10px;
 }
 
 .wrapper-desc {
   margin: 10px 0;
+}
+
+#take-return.btn {
+  width: 100%;
 }
 
 .text-desc {
@@ -77,4 +87,11 @@
 
 .func-links>a {
   padding: 5px;
+}
+
+.like-logic {
+  display: flex;
+  min-width: 15%;
+  justify-content: space-around;
+  align-items: center;
 }

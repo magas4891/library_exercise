@@ -16,9 +16,10 @@ CSS Updated 3 days ago
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
-
+ *= require rails_bootstrap_forms
  */
 @import "bootstrap";
+//@import "rails_bootstrap_forms";
 
 body {
   background-color: azure;
@@ -51,4 +52,9 @@ body {
   //background-color: azure;
   width: 100%;
   padding: 10px 20px;
+}
+
+.calistoga_font {
+  font-size: 20px;
+  font-family: 'Calistoga', cursive;
 }

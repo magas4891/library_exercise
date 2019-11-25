@@ -1,54 +1,59 @@
 #book-content
-  .title-text
-    = @book.name
-  .title-text-2
-    Author:
-    = @book.author
+  .book-header
+    .title-and-author
+      .title-text
+        = @book.name
+      .title-text-2
+        Author:
+        = @book.author
+    .like-logic
+      = @book.likes_counter
+      - if @like_owner
+        = button_to "Like", book_likes_path(@book.id), type: "button", disabled: "True"
+      - else
+        = button_to "Like", book_likes_path(@book.id), type: "button", method: "post"
   .about
     .cover
       - if @book.cover?
         = image_tag @book.cover.url
       - else
         = image_tag "no_cover.png"
-      .func-buttons
-        - if @book.status?
-          = button_to "Take", take_book_path(@book.id), class: "btn btn-outline-success", type: "button", method: "put"
+      - if @book.status?
+        = button_to "Take", take_book_path(@book.id), id: 'take-return', class: "btn btn-outline-success", type: "button", method: "put"
+      - else
+        - if @book.user_id == current_user.id
+          = button_to "Return", return_book_path(@book.id), id: 'take-return', class: "btn btn-outline-warning", type: "button", method: "put"
         - else
-          - if @book.user_id == current_user.id
-            = button_to "Return", return_book_path(@book.id), class: "btn btn-outline-warning", type: "button", method: "put"
-          - else
-            = button_to "Take", class: "btn btn-outline-success", type: "button", disabled: "True"
-        -#.like-button
-        = @book.likes_counter
-        - if @like_owner
-          = button_to "Like", book_likes_path(@book.id), type: "button", disabled: "True"
-        - else
-          = button_to "Like", book_likes_path(@book.id), type: "button", method: "post"
+          = button_to "Take", class: "btn btn-outline-success", type: "button", disabled: "True"
+
     .text-desc
       = @book.description
   .comments-area
-    - if @comments
-      - @comments.each do |comment|
-        = comment.commenter
-        = comment.comment
     .comments-form
       -if current_user
         = bootstrap_form_for([ @book, @book.comments.build ], local: true) do |form|
-          = form.text_area :comment
-          = form.submit "Add comment", id: 'create_comment'
+          = form.text_area :comment, label: "Add your comment", placeholder: "Leave a comment..."
+          = form.submit "Add comment", id: 'create_comment', class: 'btn btn-outline-info'
+    .comments-show
+      .calistoga_font= 'All comments:'
+      - if @comments
+        - @comments.each do |comment|
+          = comment.commenter
+          = ':'
+          = comment.comment
   .histories-area
     .history-title History
     %table.table
       %thead.thead-dark
         %tr
-          %td= 'Reader'
-          %td= 'Take'
-          %td= 'Return'
+          %td.fix-width= 'Reader'
+          %td= 'Take at'
+          %td= 'Return at'
       %tbody
         - if @histories
           - @histories.each do |history|
             %tr
-              %td= history.name
+              %td.fix-width= history.name
               %td= history.take_date
               %td= history.return_date
 

@@ -9,3 +9,20 @@
 .comments-form {
 
 }
+
+.new_comment {
+  min-width: 30%;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.comments-show {
+  min-width: 60%;
+  padding: 10px;
+}
+
+.control-label {
+  font-size: 20px;
+  font-family: 'Calistoga', cursive;
+}
