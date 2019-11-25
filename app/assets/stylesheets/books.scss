@@ -55,3 +55,26 @@
   padding: 5px 0;
   align-items: center;
 }
+.fix-width {
+  width: 50%;
+}
+.pagination_block {
+  display: flex;
+  justify-content: center;
+}
+
+.pagination>span {
+  padding: 5px;
+  //border: 0.5px solid black;
+}
+
+.func-links {
+  display: flex;
+  justify-content: center;
+  padding: 20px;
+  align-items: center;
+}
+
+.func-links>a {
+  padding: 5px;
+}

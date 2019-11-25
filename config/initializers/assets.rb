@@ -16,5 +16,7 @@ Rails.application.config.assets.paths << Rails.root.join('node_modules')
 # Rails.application.config.assets.precompile += %w( admin.js admin.css )
 Rails.application.config.assets.precompile += %w[rating.css]
 Rails.application.config.assets.precompile += %w[books.css]
+Rails.application.config.assets.precompile += %w[historys.css]
+Rails.application.config.assets.precompile += %w[comments.css]
 Rails.application.config.assets.precompile += %w[rating.js]
 Rails.application.config.assets.precompile += %w[jquery-3.4.1.js]

@@ -7,7 +7,7 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-    @books = Book.all
+    @books = Book.all.page(params[:page]).per(10)
     @books.each do |book|
       book.update(rank: book.taken + book.likes_counter)
     end

@@ -1,6 +1,7 @@
 #books-index
   .content
     = render 'layouts/top-five'
+    %h2= 'Books in our library'
     .books-index-content
       %table.table.table-hover
         %thead
@@ -16,20 +17,12 @@
                 %td= image_tag book.cover.url
               - else
                 %td= image_tag "no_cover.png", size: "50x50"
-              %td= book.name
-
+              %td.fix-width= book.name
               - if book.status?
                 %td= 'Available'
               - else
                 %td.available{title: "#{book.user.name}"}
                   = "Not available"
               %td= link_to 'Show', book
-              -#%td= link_to 'Edit', edit_book_path(book)
-              -#%td= link_to 'Destroy', book, method: :delete, data: { confirm: 'Are you sure?' }
-
-%br/
-= link_to 'New Book', new_book_path
-%br/
-= link_to "Sign UP", new_user_registration_path
-= link_to "Sign IN", new_user_session_path
-= link_to "Sign_OUT", destroy_user_session_path, method: :delete
+    .pagination.justify-content-center
+      = paginate @books

@@ -26,7 +26,18 @@
           = button_to "Like", book_likes_path(@book.id), type: "button", method: "post"
     .text-desc
       = @book.description
-  .histories
+  .comments-area
+    - if @comments
+      - @comments.each do |comment|
+        = comment.commenter
+        = comment.comment
+    .comments-form
+      -if current_user
+        = bootstrap_form_for([ @book, @book.comments.build ], local: true) do |form|
+          = form.text_area :comment
+          = form.submit "Add comment", id: 'create_comment'
+  .histories-area
+    .history-title History
     %table.table
       %thead.thead-dark
         %tr
@@ -35,13 +46,13 @@
           %td= 'Return'
       %tbody
         - if @histories
-          - @histories.each do |f|
+          - @histories.each do |history|
             %tr
-              %td= f.name
-              %td= f.take_date
-              %td= f.return_date
+              %td= history.name
+              %td= history.take_date
+              %td= history.return_date
 
-
-  = link_to 'Edit', edit_book_path(@book)
-  |
-  = link_to 'Back', books_path
+  .func-links
+    = link_to 'Edit', edit_book_path(@book)
+    |
+    = link_to 'Back', books_path

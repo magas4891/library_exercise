@@ -26,6 +26,9 @@ gem 'devise'
 gem 'bootstrap', '~> 4.3.1'
 gem 'jquery-rails'
 gem 'popper_js', '~> 1.14', '>= 1.14.5'
+gem 'kaminari-actionview'
+gem 'kaminari-mongoid'
+gem 'bootstrap_form', '~> 2.3'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 5.0'
