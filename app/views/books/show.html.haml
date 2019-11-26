@@ -7,11 +7,11 @@
         Author:
         = @book.author
     .like-logic
-      = @book.likes_counter
+      .calistoga_font= @book.likes_counter
       - if @like_owner
-        = button_to "Like", book_likes_path(@book.id), type: "button", disabled: "True"
+        = button_to "Like", book_likes_path(@book.id), type: "button", disabled: "True", class: 'far'
       - else
-        = button_to "Like", book_likes_path(@book.id), type: "button", method: "post"
+        = button_to "Like", book_likes_path(@book.id), type: "button", method: "post", class: 'far'
   .about
     .cover
       - if @book.cover?
@@ -19,10 +19,10 @@
       - else
         = image_tag "no_cover.png"
       - if @book.status?
-        = button_to "Take", take_book_path(@book.id), id: 'take-return', class: "btn btn-outline-success", type: "button", method: "put"
+        = button_to "Take", take_book_path(@book.id), id: 'take-return', class: "btn btn-outline-success far", type: "button", method: "put"
       - else
         - if @book.user_id == current_user.id
-          = button_to "Return", return_book_path(@book.id), id: 'take-return', class: "btn btn-outline-warning", type: "button", method: "put"
+          = button_to "Return", return_book_path(@book.id), id: 'take-return', class: "btn btn-outline-warning far", type: "button", method: "put"
         - else
           = button_to "Take", class: "btn btn-outline-success", type: "button", disabled: "True"
 
@@ -33,14 +33,14 @@
       -if current_user
         = bootstrap_form_for([ @book, @book.comments.build ], local: true) do |form|
           = form.text_area :comment, label: "Add your comment", placeholder: "Leave a comment..."
-          = form.submit "Add comment", id: 'create_comment', class: 'btn btn-outline-info'
+          = form.submit "Add comment", id: 'create_comment', class: 'btn btn-outline-info far'
     .comments-show
       .calistoga_font= 'All comments:'
       - if @comments
         - @comments.each do |comment|
-          = comment.commenter
-          = ':'
-          = comment.comment
+          .bold-text= comment.commenter + ':'
+          .text-comment= comment.comment
+          %br
   .histories-area
     .history-title History
     %table.table
@@ -58,6 +58,6 @@
               %td= history.return_date
 
   .func-links
-    = link_to 'Edit', edit_book_path(@book)
+    = link_to 'Edit', edit_book_path(@book), class: 'far'
     |
-    = link_to 'Back', books_path
+    = link_to 'Back', books_path, class: 'far'

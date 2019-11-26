@@ -19,7 +19,7 @@ CSS Updated 3 days ago
  *= require rails_bootstrap_forms
  */
 @import "bootstrap";
-//@import "rails_bootstrap_forms";
+@import 'font_awesome5_webfont';
 
 body {
   background-color: azure;
@@ -57,4 +57,8 @@ body {
 .calistoga_font {
   font-size: 20px;
   font-family: 'Calistoga', cursive;
+}
+
+.bold-text {
+  font-weight: bold;
 }

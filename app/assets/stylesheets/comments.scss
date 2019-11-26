@@ -7,7 +7,8 @@
 }
 
 .comments-form {
-
+  min-width: 270px;
+  padding-left: 10px;
 }
 
 .new_comment {
@@ -25,4 +26,9 @@
 .control-label {
   font-size: 20px;
   font-family: 'Calistoga', cursive;
+}
+
+.text-comment {
+  padding-left: 10%;
+  text-align: justify;
 }
