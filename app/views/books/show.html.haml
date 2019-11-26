@@ -12,8 +12,6 @@
         = button_to "Like", book_likes_path(@book.id), id: 'like-btn', type: "button", method: "post", class: 'far', remote: true
       - else
         = button_to "Like", book_likes_path(@book.id), id: 'like-btn', type: "button", disabled: "True", class: 'far'
-
-
   .about
     .cover
       - if @book.cover?
@@ -21,10 +19,10 @@
       - else
         = image_tag "no_cover.png"
       - if @book.status?
-        = button_to "Take", take_book_path(@book.id), id: 'take-return', class: "btn btn-outline-success far", type: "button", method: "put", remote: true
+        .take-return= button_to "Take", take_book_path(@book.id), id: 'take-return', class: "btn btn-outline-success far", type: "button", method: "put", remote: true
       - else
         - if @book.user_id == current_user.id
-          = button_to "Return", return_book_path(@book.id), id: 'take-return', class: "btn btn-outline-warning far", type: "button", method: "put", remote: true
+          .take-return= button_to "Return", return_book_path(@book.id), id: 'take-return', class: "btn btn-outline-warning far", type: "button", method: "put", remote: true
         - else
           = button_to "Take", class: "btn btn-outline-success", type: "button", disabled: "True"
 
@@ -51,13 +49,8 @@
           %td.fix-width= 'Reader'
           %td= 'Take at'
           %td= 'Return at'
-      %tbody
-        - if @histories
-          - @histories.each do |history|
-            %tr
-              %td.fix-width= history.name
-              %td= history.take_date
-              %td= history.return_date
+      %tbody.history-list
+        = render 'histories'
 
   .func-links
     = link_to 'Edit', edit_book_path(@book), class: 'far'

@@ -75,13 +75,19 @@ class BooksController < ApplicationController
     @book.update(user_id: current_user.id, status: false)
     @book.histories.create!(user_id: current_user.id, name: current_user.name,
                             take_date: Time.now)
-    redirect_to @book
+    @histories = History.where(book_id: @book)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def return
     @history.update(return_date: Time.now)
     @book.update(user_id: User.first.id, status: true)
-    redirect_to @book
+    @histories = History.where(book_id: @book)
+    respond_to do |format|
+      format.js
+    end
   end
 
   def rating

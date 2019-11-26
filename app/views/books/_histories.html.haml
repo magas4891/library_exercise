@@ -1,0 +1,6 @@
+- if @histories
+  - @histories.each do |history|
+    %tr
+      %td.fix-width= history.name
+      %td= history.take_date
+      %td= history.return_date
