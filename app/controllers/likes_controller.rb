@@ -4,11 +4,8 @@ class LikesController < ApplicationController
   # before_action :find_like, only: [:destroy]
 
   def create
-
     @book.likes.create!(user_id: current_user.id, book_id: @book.id)
     @book.inc(likes_counter: 1)
-
-    redirect_to @book
   end
 
   private
