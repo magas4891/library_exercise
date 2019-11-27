@@ -1,0 +1,5 @@
+$(".comments-list").html("<%= j (render 'comments/comments', comments: @comments) %>");
+$(".comments-list").ready(function(){
+    var form = document.getElementById("comment_comment");
+    form.value = '';
+});

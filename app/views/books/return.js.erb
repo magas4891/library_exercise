@@ -1,2 +1,2 @@
-$(".history-list").html("<%= j (render 'books/histories', histories: @histories) %>")
+$(".history-list").html("<%= j (render 'historys/histories', histories: @histories) %>")
 $(".take-return").html('<%= j (button_to "Take", take_book_path(@book.id), id: 'take-return', class: "btn btn-outline-success far", type: "button", method: "put", remote: true) %>')

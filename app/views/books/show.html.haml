@@ -36,11 +36,7 @@
           = form.submit "Add comment", id: 'create_comment', class: 'btn btn-outline-info far'
     .comments-show
       .calistoga_font= 'All comments:'
-      - if @comments
-        - @comments.each do |comment|
-          .bold-text= comment.commenter + ':'
-          .text-comment= comment.comment
-          %br
+      .comments-list= render 'comments/comments'
   .histories-area
     .history-title History
     %table.table
@@ -50,7 +46,7 @@
           %td= 'Take at'
           %td= 'Return at'
       %tbody.history-list
-        = render 'histories'
+        = render 'historys/histories'
 
   .func-links
     = link_to 'Edit', edit_book_path(@book), class: 'far'
