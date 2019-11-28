@@ -10,3 +10,14 @@
   font-size: 30px;
   font-family: 'Calistoga', cursive;
 }
+
+@media (max-width: 1280px) {
+  .history-title {
+    text-align: center;
+  }
+  .table {
+    width: 80%;
+    text-align: center;
+    margin: auto;
+  }
+}

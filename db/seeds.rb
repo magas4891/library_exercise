@@ -13,13 +13,36 @@ User.create(email: 'user2@gmail.com', password: 'password', name: Faker::Interne
   User.create!(email: Faker::Internet.email,
                password: Faker::Internet.password,
                name: Faker::Name.name)
+  p User.last.name
 end
 20.times do
   Book.create!(name: Faker::Book.title,
                cover: Faker::Avatar.image,
-               description: Faker::Lorem.paragraphs(number: 3),
+               description: Faker::Lorem.paragraph_by_chars(number: 300, supplemental: false),
                likes_counter: Faker::Number.within(range: 1..50),
                taken: Faker::Number.within(range: 1..10),
                author: Faker::Book.author,
                user_id: User.first.id)
+  p Book.last.name
+end
+
+100.times do
+  book = Book.all.sample
+  user = User.all.sample
+  History.create!(book_id: book.id,
+                  user_id: user.id,
+                  name: user.name,
+                  take_date: Time.now,
+                  return_date: Time.now || nil)
+  p "#{History.last.book.name} #{History.last.name}"
+end
+
+200.times do
+  book = Book.all.sample
+  user = User.all.sample
+  Comment.create!(book_id: book.id,
+                  user_id: user.id,
+                  commenter: user.name,
+                  comment: Faker::Lorem.paragraph)
+  p "#{Comment.last.commenter} #{Comment.last.comment}"
 end

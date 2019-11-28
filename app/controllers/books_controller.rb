@@ -17,7 +17,7 @@ class BooksController < ApplicationController
   # GET /books/1
   # GET /books/1.json
   def show
-    @comments = Comment.where(book_id: @book).order('created_at DESC')
+    @comments = Comment.where(book_id: @book).order('created_at ASC')
     @histories = @book.histories
     @like_owner = true if already_liked
   end

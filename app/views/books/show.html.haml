@@ -13,19 +13,19 @@
       - else
         = button_to "Like", book_likes_path(@book.id), id: 'like-btn', type: "button", disabled: "True", class: 'far'
   .about
-    .cover
-      - if @book.cover?
-        = image_tag @book.cover.url
-      - else
-        = image_tag "no_cover.png"
-      - if @book.status?
-        .take-return= button_to "Take", take_book_path(@book.id), id: 'take-return', class: "btn btn-outline-success far", type: "button", method: "put", remote: true
-      - else
-        - if @book.user_id == current_user.id
-          .take-return= button_to "Return", return_book_path(@book.id), id: 'take-return', class: "btn btn-outline-warning far", type: "button", method: "put", remote: true
+    .about-wraper
+      .cover
+        - if @book.cover?
+          = image_tag @book.cover.url
         - else
-          = button_to "Take", class: "btn btn-outline-success", type: "button", disabled: "True"
-
+          = image_tag "no_cover.png"
+        - if @book.status?
+          .take-return= button_to "Take", take_book_path(@book.id), id: 'take-return', class: "btn btn-outline-success far", type: "button", method: "put", remote: true
+        - else
+          - if @book.user_id == current_user.id
+            .take-return= button_to "Return", return_book_path(@book.id), id: 'take-return', class: "btn btn-outline-warning far", type: "button", method: "put", remote: true
+          - else
+            = button_to "Take", class: "btn btn-outline-success", type: "button", disabled: "True"
     .text-desc
       = @book.description
   .comments-area

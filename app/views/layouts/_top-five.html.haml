@@ -11,7 +11,7 @@
       - @top_books.each do |top_book|
         %tr
           - if top_book.cover?
-            %td= image_tag top_book.cover.url
+            %td= image_tag(top_book.cover.url, height: '80', title: top_book.name)
           - else
             %td= image_tag "no_cover.png", size: "50x50"
           %td.fix-width= top_book.name

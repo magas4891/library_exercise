@@ -44,7 +44,7 @@ body {
 }
 
 #content {
-  width: 80%;
+  width: 70%;
   display: flex;
   margin: auto;
 }
@@ -61,4 +61,8 @@ body {
 
 .bold-text {
   font-weight: bold;
+}
+
+.form-inline {
+  flex-flow: row nowrap !important;
 }
