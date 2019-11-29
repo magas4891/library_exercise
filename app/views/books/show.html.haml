@@ -8,8 +8,11 @@
         = @book.author
     .like-logic
       .likes-counter= @book.likes_counter
-      - unless @like_owner
-        = button_to "Like", book_likes_path(@book.id), id: 'like-btn', type: "button", method: "post", class: 'far', remote: true
+      - if user_signed_in?
+        - unless @like_owner
+          = button_to "Like", book_likes_path(@book.id), id: 'like-btn', type: "button", method: "post", class: 'far', remote: true
+        - else
+          = button_to "Like", book_likes_path(@book.id), id: 'like-btn', type: "button", disabled: "True", class: 'far'
       - else
         = button_to "Like", book_likes_path(@book.id), id: 'like-btn', type: "button", disabled: "True", class: 'far'
   .about
@@ -19,18 +22,21 @@
           = image_tag @book.cover.url
         - else
           = image_tag "no_cover.png"
-        - if @book.status?
-          .take-return= button_to "Take", take_book_path(@book.id), id: 'take-return', class: "btn btn-outline-success far", type: "button", method: "put", remote: true
-        - else
-          - if @book.user_id == current_user.id
-            .take-return= button_to "Return", return_book_path(@book.id), id: 'take-return', class: "btn btn-outline-warning far", type: "button", method: "put", remote: true
+        - if user_signed_in?
+          - if @book.status?
+            .take-return= button_to "Take", take_book_path(@book.id), id: 'take-return', class: "btn btn-outline-success far", type: "button", method: "put", remote: true
           - else
-            = button_to "Take", class: "btn btn-outline-success", type: "button", disabled: "True"
+            - if @book.user_id == current_user.id
+              .take-return= button_to "Return", return_book_path(@book.id), id: 'take-return', class: "btn btn-outline-warning far", type: "button", method: "put", remote: true
+            - else
+              = button_to "Take", class: "btn btn-outline-success", type: "button", disabled: "True"
+        -#- else
+        -#  = button_to "Take", class: "btn btn-outline-success", type: "button", disabled: "True"
     .text-desc
       = @book.description
   .comments-area
     .comments-form
-      -if current_user
+      - if user_signed_in?
         = bootstrap_form_for([ @book, @book.comments.build ], remote: true ) do |form|
           = form.text_area :comment, label: "Add your comment", placeholder: "Leave a comment..."
           = form.submit "Add comment", id: 'create_comment', class: 'btn btn-outline-info far'

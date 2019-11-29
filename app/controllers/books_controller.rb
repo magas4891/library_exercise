@@ -3,6 +3,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[show edit update destroy take return]
   before_action :set_history, only: [:return]
+  before_action :authenticate_user!, only: %i[take return]
 
   # GET /books
   # GET /books.json
@@ -19,6 +20,7 @@ class BooksController < ApplicationController
   def show
     @comments = Comment.where(book_id: @book).order('created_at ASC')
     @histories = @book.histories
+
     @like_owner = true if already_liked
   end
 
@@ -71,6 +73,7 @@ class BooksController < ApplicationController
   end
 
   def take
+    redirect_to if not current_user
     @book.inc(taken: 1)
     @book.update(user_id: current_user.id, status: false)
     @book.histories.create!(user_id: current_user.id, name: current_user.name,
@@ -115,6 +118,6 @@ class BooksController < ApplicationController
 
   def already_liked
     Like.where(user_id: current_user.id,
-               book_id: params[:id]).exists?
+               book_id: params[:id]).exists? if current_user
   end
 end

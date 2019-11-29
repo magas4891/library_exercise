@@ -1,8 +1,14 @@
 #header
   .header-container
     %a.navbar-brand{:href => root_path}
-      = image_tag "logo.png", title: "We are FACEit", :class => "swing"
+      = image_tag "logo.png", title: "We are FACEit"
     %nav.navbar.navbar-light
       %form.form-inline
         %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
         %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search
+    - if user_signed_in?
+      %a{:href => root_path}
+        = image_tag "sign-out.png", class: "authenticate"
+    - else
+      %a{:href => root_path}
+        = image_tag "sign-in.png", class: "authenticate"
