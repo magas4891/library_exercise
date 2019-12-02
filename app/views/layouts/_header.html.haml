@@ -7,8 +7,8 @@
         %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
         %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search
     - if user_signed_in?
-      %a{:href => root_path}
+      %a{:href => destroy_user_session_path, "data-method" => "delete"}
         = image_tag "sign-out.png", class: "authenticate"
     - else
-      %a{:href => root_path}
+      %a{:href => new_user_session_path}
         = image_tag "sign-in.png", class: "authenticate"
