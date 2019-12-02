@@ -1,6 +1,5 @@
-#qqq
-  - if @comments
-    - @comments.each do |comment|
-      .bold-text= comment.commenter + ':'
-      .text-comment= comment.comment
-      %br
+- if @comments
+  - @comments.each do |comment|
+    .bold-text= comment.commenter + ':'
+    .text-comment= comment.comment
+    %br
