@@ -7,8 +7,8 @@
 #
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
-User.create(email: 'user1@gmail.com', password: 'password', name: Faker::Internet.username)
-User.create(email: 'user2@gmail.com', password: 'password', name: Faker::Internet.username)
+User.create(email: 'user1@gmail.com', password: 'password', name: 'admin1')
+User.create(email: 'user2@gmail.com', password: 'password', name: 'admin2')
 10.times do
   User.create!(email: Faker::Internet.email,
                password: Faker::Internet.password,
@@ -17,7 +17,6 @@ User.create(email: 'user2@gmail.com', password: 'password', name: Faker::Interne
 end
 20.times do
   Book.create!(name: Faker::Book.title,
-               cover: Faker::Avatar.image,
                description: Faker::Lorem.paragraph_by_chars(number: 300, supplemental: false),
                likes_counter: Faker::Number.within(range: 1..50),
                taken: Faker::Number.within(range: 1..10),

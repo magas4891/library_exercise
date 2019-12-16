@@ -9,7 +9,7 @@
   .login-container
     - if user_signed_in?
       %a{:href => destroy_user_session_path, "data-method" => "delete"}
-        = image_tag "sign-out.png", class: "authenticate"
+        = image_tag "sign-out.png", title: "Log out", class: "authenticate"
     - else
       %a{:href => new_user_session_path}
-        = image_tag "sign-in.png", class: "authenticate"
+        = image_tag "sign-in.png", title: "Log in", class: "authenticate"

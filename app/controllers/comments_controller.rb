@@ -13,6 +13,7 @@ class CommentsController < ApplicationController
     @comment.user_id = current_user.id
     @comment.book_id = @book.id
     @comment.commenter = current_user.name
+    @comment.save!
     respond_to do |format|
       if @comment.save
         format.js
