@@ -39,4 +39,5 @@ class User
   # field :locked_at,       type: Time
 
   field :name, type: String
+  validates :name, presence: true
 end
