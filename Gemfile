@@ -56,6 +56,7 @@ group :development, :test do
   gem 'shoulda-matchers'
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
+  gem 'mongoid-rspec'
 end
 
 group :development do
