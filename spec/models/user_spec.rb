@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe User, type: :model do
-  let(:user) { create(:valid_user) }
+  let!(:user) { create(:valid_user) }
 
   context 'assotiation' do
     it { is_expected.to be_mongoid_document }
@@ -33,6 +33,12 @@ RSpec.describe User, type: :model do
     end
     it 'without name is INVALID' do
       expect(user = build(:valid_user, name: nil)).to_not be_valid
+    end
+  end
+
+  context "deleting" do
+    it 'count of users became less on 1' do
+      expect { user.destroy }.to change { User.count }.by(-1)
     end
   end
 end

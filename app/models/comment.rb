@@ -1,6 +1,7 @@
 class Comment
   include Mongoid::Document
   include Mongoid::Timestamps
+
   field :commenter, type: String
   field :comment, type: String
   field :book_id, type: String
@@ -8,4 +9,6 @@ class Comment
 
   belongs_to :user
   belongs_to :book
+
+  validates :comment, presence: true
 end

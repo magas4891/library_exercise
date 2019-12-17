@@ -14,8 +14,11 @@ class Book
   field :rank, type: Integer, default: -> { 0 }
 
   mount_uploader :cover, CoverUploader
+
   belongs_to :user
-  has_many :comments
+  has_many :comments, dependent: :destroy
   has_many :histories
   has_many :likes
+
+  validates :name, :description, :author, presence: true
 end
