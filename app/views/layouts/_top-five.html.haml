@@ -3,10 +3,9 @@
   %table.table.table-hover
     %thead
       %tr
-        %td= ' '
+        %td= 'Cover'
         %td= 'Name'
         %td= 'Status'
-        %td= ' '
     %tbody
       - @top_books.each do |top_book|
         %tr
@@ -14,11 +13,11 @@
             %td= image_tag(top_book.cover.url, height: '80', title: top_book.name)
           - else
             %td= image_tag "no_cover.png", size: "50x50"
-          %td.fix-width= top_book.name
+          %td.fix-width
+            =link_to top_book.name, top_book
 
           - if top_book.status?
             %td= 'Available'
           - else
             %td.available{title: "#{top_book.user.name}"}
               = "Not available"
-          %td= link_to 'Show', top_book

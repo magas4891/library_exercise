@@ -54,7 +54,12 @@
       %tbody.history-list
         = render 'historys/histories'
 
-  .func-links
-    = link_to 'Edit', edit_book_path(@book), class: 'far'
-    |
-    = link_to 'Back', books_path, class: 'far'
+  - if user_signed_in?
+    -#- if current_user.id == @book.id
+    .func-links
+      = link_to 'Edit', edit_book_path(@book), class: 'far'
+      |
+      = link_to 'Back', books_path, class: 'far'
+  .back
+    = link_to books_path do
+      = image_tag "arrow-back.png", title: "Back to main", size: "64x64"#, :class => "swing"

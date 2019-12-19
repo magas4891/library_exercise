@@ -16,11 +16,11 @@ CSS Updated 3 days ago
  * files in this directory. Styles in this file should be added after the last require_* statement.
  * It is generally better to create a new file per style scope.
  *
- *= require rails_bootstrap_forms
  */
 @import "bootstrap";
 @import 'font_awesome5_webfont';
 @import url('https://fonts.googleapis.com/css?family=Poppins:300&display=swap');
+@import "rails_bootstrap_forms";
 
 body {
   background-color: azure;
@@ -62,7 +62,7 @@ body {
 .main-container {
   //background-color: azure;
   width: 100%;
-  padding: 10px 20px;
+  padding: 40px 20px;
 }
 
 .calistoga_font {
@@ -83,9 +83,40 @@ body {
   padding-right: 5%;
 }
 
+.content > h2 {
+  font-family: 'Calistoga', cursive;
+}
+
+.table.table-hover {
+  text-align: center;
+  font-size: 18px;
+}
+
+.table.table-hover > thead {
+  font-size: larger;
+}
+
+.table td {
+  vertical-align: middle;
+}
+
+.fix-width {
+  width: 60%;
+}
+
+.fix-width ~ td {
+  min-width: 200px;
+}
+
 @media (max-width: 1024px) {
   #content {
     width: 80%;
+  }
+}
+
+@media (max-width: 1280px) {
+  .table.table-hover{
+    width: 100%;
   }
 }
 

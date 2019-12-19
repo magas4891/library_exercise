@@ -1,5 +1,5 @@
 - if @comments
   - @comments.each do |comment|
-    .bold-text= comment.commenter + ':'
+    .bold-text= comment.commenter + ' (at ' + comment.created_at.to_s + ')' + ':'
     .text-comment= comment.comment
     %br

@@ -28,7 +28,7 @@ gem 'jquery-rails'
 gem 'popper_js', '~> 1.14', '>= 1.14.5'
 gem 'kaminari-actionview'
 gem 'kaminari-mongoid'
-gem 'bootstrap_form', '~> 2.3'
+gem "bootstrap_form", "~> 4.0"
 gem 'font_awesome5_rails'
 
 
@@ -50,13 +50,14 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
   # Adds support for Capybara system testing and selenium driver
-  gem 'rspec-rails', '~> 3.9'
+  gem 'rspec-rails', '~> 4.0.0.beta3'
   gem 'factory_bot_rails'
   gem 'database_cleaner', '~> 1.7'
   gem 'shoulda-matchers'
   gem 'capybara', '~> 2.13'
   gem 'selenium-webdriver'
   gem 'mongoid-rspec'
+  gem 'rails-controller-testing'
 end
 
 group :development do

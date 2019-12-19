@@ -6,10 +6,9 @@
       %table.table.table-hover
         %thead
           %tr
-            %td= ' '
+            %td= 'Cover'
             %td= 'Name'
             %td= 'Status'
-            %td= ' '
         %tbody
           - @books.each do |book|
             %tr
@@ -17,12 +16,16 @@
                 %td= image_tag(book.cover.url, height: '80', title: book.name)
               - else
                 %td= image_tag "no_cover.png", size: "50x50"
-              %td.fix-width= book.name
+              %td.fix-width
+                =link_to book.name, book
               - if book.status?
                 %td= 'Available'
               - else
                 %td.available{title: "#{book.user.name}"}
                   = "Not available"
-              %td= link_to 'Show', book
+    .new-book
+      - if user_signed_in?
+        = link_to new_book_path do
+          = image_tag "library.png", title: "Add new book", size: "64x64"#, :class => "swing"
     .pagination.justify-content-center
       .far= paginate @books

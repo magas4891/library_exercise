@@ -39,4 +39,9 @@ RSpec.describe Book, type: :model do
       expect { book.destroy }.to change { Book.count }.by(-1)
     end
   end
+
+  it "has one after adding one" do
+    instance_double("Book", :name => "my name")
+  end
+
 end
