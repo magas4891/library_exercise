@@ -23,8 +23,8 @@
               - else
                 %td.available{title: "#{book.user.name}"}
                   = "Not available"
-    .new-book
-      - if user_signed_in?
+    - if user_signed_in?
+      .new-book
         = link_to new_book_path do
           = image_tag "library.png", title: "Add new book", size: "64x64"#, :class => "swing"
     .pagination.justify-content-center

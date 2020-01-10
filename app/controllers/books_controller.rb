@@ -3,7 +3,7 @@
 class BooksController < ApplicationController
   before_action :set_book, only: %i[show edit update destroy take return]
   before_action :set_history, only: [:return]
-  before_action :authenticate_user!, only: %i[take return]
+  before_action :authenticate_user!, only: %i[new take return]
 
   # GET /books
   # GET /books.json
