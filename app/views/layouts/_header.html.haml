@@ -3,9 +3,12 @@
     %a.navbar-brand{:href => root_path}
       = image_tag "logo.png", title: "We are FACEit"
     %nav.navbar.navbar-light
-      = simple_form_for :search, url: root_path, method: "GET", html: { class: 'form-inline' } do |f|
-        = f.input :query, input_html: {value: ""}
-        = f.submit "Search", class: "btn btn-primary"
+      = form_tag(root_path, method: "GET", class: "form-inline") do
+        = text_field_tag :query, params[:query], class: "form-control mr-sm-2", placeholder: "Search"
+        = submit_tag 'Search', class: "btn btn-outline-success my-2 my-sm-0"
+      -#= simple_form_for :search, url: root_path, method: "GET", html: { class: 'form-inline' } do |f|
+      -#  = f.input :query, input_html: {value: ""}
+      -#  = f.submit "Search", class: "btn btn-primary"
       -#%form.form-inline
       -#  %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
       -#  %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search

@@ -14,10 +14,9 @@ class BooksController < ApplicationController
       book.update(rank: book.taken + book.likes_counter)
     end
     @top_books = Book.all.order('rank desc)').limit(5)
-    @search = params["search"]
+    @search = params["query"]
     if @search.present?
-      @query = @search["query"]
-      @books = Book.full_text_search(@query)
+      @books = Book.full_text_search(@search).page(params[:page]).per(10)
     end
   end
 

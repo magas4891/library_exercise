@@ -23,6 +23,6 @@ class Book
 
   validates :name, :description, :author, presence: true
 
-  search_in :name
+  search_in :name, :description, :author
 
 end
