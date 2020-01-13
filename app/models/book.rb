@@ -1,5 +1,6 @@
 class Book
   include Mongoid::Document
+  include Mongoid::Search
   include Mongoid::Timestamps
 
   field :name, type: String
@@ -21,4 +22,7 @@ class Book
   has_many :likes
 
   validates :name, :description, :author, presence: true
+
+  search_in :name
+
 end

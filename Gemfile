@@ -45,7 +45,8 @@ gem 'jbuilder', '~> 2.5'
 gem 'bootsnap', require: false
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
-gem 'search_flip'
+gem 'mongoid_search'
+gem 'simple_form'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

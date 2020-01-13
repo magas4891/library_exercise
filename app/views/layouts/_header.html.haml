@@ -3,9 +3,12 @@
     %a.navbar-brand{:href => root_path}
       = image_tag "logo.png", title: "We are FACEit"
     %nav.navbar.navbar-light
-      %form.form-inline
-        %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
-        %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search
+      = simple_form_for :search, url: root_path, method: "GET", html: { class: 'form-inline' } do |f|
+        = f.input :query, input_html: {value: ""}
+        = f.submit "Search", class: "btn btn-primary"
+      -#%form.form-inline
+      -#  %input.form-control.mr-sm-2{"aria-label" => "Search", :placeholder => "Search", :type => "search"}/
+      -#  %button.btn.btn-outline-success.my-2.my-sm-0{:type => "submit"} Search
   .login-container
     - if user_signed_in?
       %a{:href => destroy_user_session_path, "data-method" => "delete"}

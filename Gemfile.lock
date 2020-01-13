@@ -119,8 +119,6 @@ GEM
       responders
       warden (~> 1.2.3)
     diff-lcs (1.3)
-    domain_name (0.5.20190701)
-      unf (>= 0.0.5, < 1.0.0)
     erubi (1.9.0)
     erubis (2.7.0)
     execjs (2.7.0)
@@ -129,10 +127,8 @@ GEM
     factory_bot_rails (5.1.1)
       factory_bot (~> 5.1.0)
       railties (>= 4.2.0)
+    fast-stemmer (1.0.2)
     ffi (1.11.1)
-    ffi-compiler (1.0.1)
-      ffi (>= 1.0.0)
-      rake
     font_awesome5_rails (0.9.0)
       railties (>= 4.2)
     globalid (0.4.2)
@@ -146,22 +142,11 @@ GEM
       haml (>= 4.0.6, < 6.0)
       html2haml (>= 1.0.1)
       railties (>= 5.1)
-    hashie (4.0.0)
     html2haml (2.2.0)
       erubis (~> 2.7.0)
       haml (>= 4.0, < 6)
       nokogiri (>= 1.6.0)
       ruby_parser (~> 3.5)
-    http (4.3.0)
-      addressable (~> 2.3)
-      http-cookie (~> 1.0)
-      http-form_data (~> 2.2)
-      http-parser (~> 1.2.0)
-    http-cookie (1.0.3)
-      domain_name (~> 0.5)
-    http-form_data (2.2.0)
-    http-parser (1.2.1)
-      ffi-compiler (>= 1.0, < 2.0)
     i18n (1.7.0)
       concurrent-ruby (~> 1.0)
     image_processing (1.9.3)
@@ -216,11 +201,13 @@ GEM
       mongoid (>= 3.1)
       mongoid-compatibility (>= 0.5.1)
       rspec (~> 3.3)
+    mongoid_search (0.3.6)
+      fast-stemmer (~> 1.0.0)
+      mongoid (>= 3.0.0)
     msgpack (1.3.1)
     nio4r (2.5.2)
     nokogiri (1.10.4)
       mini_portile2 (~> 2.4.0)
-    oj (3.10.0)
     orm_adapter (0.5.0)
     popper_js (1.14.5)
     public_suffix (4.0.1)
@@ -311,16 +298,15 @@ GEM
       sprockets (> 3.0)
       sprockets-rails
       tilt
-    search_flip (2.3.1)
-      hashie
-      http
-      oj
     selenium-webdriver (3.142.6)
       childprocess (>= 0.5, < 4.0)
       rubyzip (>= 1.2.2)
     sexp_processor (4.13.0)
     shoulda-matchers (4.1.2)
       activesupport (>= 4.2.0)
+    simple_form (5.0.1)
+      actionpack (>= 5.0)
+      activemodel (>= 5.0)
     spring (2.1.0)
     spring-watcher-listen (2.0.1)
       listen (>= 2.7, < 4.0)
@@ -343,9 +329,6 @@ GEM
       thread_safe (~> 0.1)
     uglifier (4.2.0)
       execjs (>= 0.3.0, < 3)
-    unf (0.1.4)
-      unf_ext
-    unf_ext (0.0.7.6)
     warden (1.2.8)
       rack (>= 2.0.6)
     web-console (4.0.1)
@@ -386,15 +369,16 @@ DEPENDENCIES
   listen (>= 3.0.5, < 3.2)
   mongoid (~> 7.0.5)
   mongoid-rspec
+  mongoid_search
   popper_js (~> 1.14, >= 1.14.5)
   puma (~> 3.7)
   rails (~> 6.0)
   rails-controller-testing
   rspec-rails (~> 4.0.0.beta3)
   sass-rails (~> 5.0)
-  search_flip
   selenium-webdriver
   shoulda-matchers
+  simple_form
   spring
   spring-watcher-listen (~> 2.0.0)
   turbolinks (~> 5)
