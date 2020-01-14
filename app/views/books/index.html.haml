@@ -21,7 +21,7 @@
               - if book.status?
                 %td= 'Available'
               - else
-                %td.available{title: "#{book.user.name}"}
+                %td.available{title: "#{book.user.name} took the Book"}
                   = "Not available"
     - if user_signed_in?
       .new-book

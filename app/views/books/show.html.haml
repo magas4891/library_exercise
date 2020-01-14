@@ -29,9 +29,7 @@
             - if @book.user_id == current_user.id
               .take-return= button_to "Return", return_book_path(@book.id), id: 'take-return', class: "btn btn-outline-warning far", type: "button", method: "put", remote: true
             - else
-              = button_to "Take", class: "btn btn-outline-success", type: "button", disabled: "True"
-        -#- else
-        -#  = button_to "Take", class: "btn btn-outline-success", type: "button", disabled: "True"
+              = button_to "#{@book.user.name} took the Book", return_book_path(@book.id), id: 'take-return', class: "btn btn-danger far", type: "button", disabled: "True"
     .text-desc
       = @book.description
   .comments-area

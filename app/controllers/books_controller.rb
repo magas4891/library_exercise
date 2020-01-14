@@ -15,9 +15,7 @@ class BooksController < ApplicationController
     end
     @top_books = Book.all.order('rank desc)').limit(5)
     @search = params["query"]
-    if @search.present?
-      @books = Book.full_text_search(@search).page(params[:page]).per(10)
-    end
+    @books = Book.full_text_search(@search).page(params[:page]).per(10) if @search.present?
   end
 
   # GET /books/1
@@ -78,7 +76,6 @@ class BooksController < ApplicationController
   end
 
   def take
-    redirect_to if not current_user
     @book.inc(taken: 1)
     @book.update(user_id: current_user.id, status: false)
     @book.histories.create!(user_id: current_user.id, name: current_user.name,
@@ -98,10 +95,6 @@ class BooksController < ApplicationController
     end
   end
 
-  def rating
-    # @book.rating =
-  end
-
   def top_five; end
 
   private
@@ -116,7 +109,7 @@ class BooksController < ApplicationController
 
   def set_history
     @history = @book.histories.where(name: current_user.name, book_id: @book.id,
-                                     return_date: nil )
+                                     return_date: nil)
   end
 
   def already_liked

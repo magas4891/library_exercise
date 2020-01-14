@@ -3,8 +3,7 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!, only: [:create]
 
-  def index
-  end
+  def index; end
 
   def create
     @book = Book.find(params[:book_id])

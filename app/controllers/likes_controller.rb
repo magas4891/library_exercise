@@ -1,7 +1,6 @@
 class LikesController < ApplicationController
   before_action :authenticate_user!, only: [:create]
   before_action :find_book, :already_liked?
-  # before_action :find_like, only: [:destroy]
 
   def create
     @book.likes.create!(user_id: current_user.id, book_id: @book.id)
