@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Book
   include Mongoid::Document
   include Mongoid::Search
@@ -24,5 +26,4 @@ class Book
   validates :name, :description, :author, presence: true
 
   search_in :name, :description, :author
-
 end

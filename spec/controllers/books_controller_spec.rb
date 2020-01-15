@@ -1,4 +1,4 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
 RSpec.describe BooksController, type: :controller do
   let!(:user) { create(:valid_user) }
@@ -12,7 +12,7 @@ RSpec.describe BooksController, type: :controller do
       end
       it 'should render index template' do
         get :index
-        expect(response).to render_template("index")
+        expect(response).to render_template('index')
       end
     end
     context 'GET #show' do
@@ -22,7 +22,7 @@ RSpec.describe BooksController, type: :controller do
       end
       it 'should render index template' do
         get :show, params: { id: book.id }
-        expect(response).to render_template("show")
+        expect(response).to render_template('show')
       end
     end
     context 'GET #new' do
@@ -48,7 +48,7 @@ RSpec.describe BooksController, type: :controller do
       end
       it 'should render index template' do
         get :index
-        expect(response).to render_template("index")
+        expect(response).to render_template('index')
       end
     end
     context 'GET #show' do
@@ -58,7 +58,7 @@ RSpec.describe BooksController, type: :controller do
       end
       it 'should render show template' do
         get :show, params: { id: book.id }
-        expect(response).to render_template("show")
+        expect(response).to render_template('show')
       end
     end
     context 'GET #new' do
@@ -69,14 +69,16 @@ RSpec.describe BooksController, type: :controller do
       end
       it 'should render new template' do
         get :new
-        expect(response).to render_template("new")
+        expect(response).to render_template('new')
       end
     end
     context 'POST #create' do
       subject do
         post :create,
              params: { book: { name: Faker::Book.title,
-                               description: Faker::Lorem.paragraph_by_chars(number: 300, supplemental: false),
+                               description:
+                                   Faker::Lorem.paragraph_by_chars(number: 300,
+                                                                   supplemental: false),
                                author: Faker::Book.author,
                                user_id: user.id } }
       end
@@ -117,7 +119,7 @@ RSpec.describe BooksController, type: :controller do
       end
       it 'create history for this book with nil "return date"' do
         expect { subject }.to change { book.reload.histories.size }.by(1)
-        expect(book.reload.histories[0]["return_date"]).to eq nil
+        expect(book.reload.histories[0]['return_date']).to eq nil
       end
     end
 
@@ -126,10 +128,8 @@ RSpec.describe BooksController, type: :controller do
         put :take, xhr: true, params: { id: book.id }
         put :return, xhr: true, params: { id: book.id }
         expect(book.reload.status).to eq true
-        expect(book.reload.histories[0]["return_date"]).not_to eq nil
+        expect(book.reload.histories[0]['return_date']).not_to eq nil
       end
-
-
     end
   end
 end

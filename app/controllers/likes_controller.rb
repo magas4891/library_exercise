@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class LikesController < ApplicationController
   before_action :authenticate_user!, only: [:create]
   before_action :find_book, :already_liked?

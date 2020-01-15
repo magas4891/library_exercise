@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class History
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -10,5 +12,4 @@ class History
 
   belongs_to :book
   belongs_to :user
-
 end

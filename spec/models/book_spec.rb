@@ -1,4 +1,4 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
 RSpec.describe Book, type: :model do
   let!(:user) { create(:valid_user) }
@@ -19,29 +19,24 @@ RSpec.describe Book, type: :model do
     it { is_expected.to validate_presence_of(:author) }
   end
 
-  context "creating" do
-    it " with valid params is VALID" do
+  context 'creating' do
+    it ' with valid params is VALID' do
       expect(book).to be_valid
     end
     it 'without name is INVALID' do
-      expect(book = build(:valid_book, name: nil)).to_not be_valid
+      expect(build(:valid_book, name: nil)).to_not be_valid
     end
     it 'without description is INVALID' do
-      expect(book = build(:valid_book, description: nil)).to_not be_valid
+      expect(build(:valid_book, description: nil)).to_not be_valid
     end
     it 'without author is INVALID' do
-      expect(book = build(:valid_book, author: nil)).to_not be_valid
+      expect(build(:valid_book, author: nil)).to_not be_valid
     end
   end
 
-  context "deleting" do
+  context 'deleting' do
     it 'count of books became less on 1' do
       expect { book.destroy }.to change { Book.count }.by(-1)
     end
   end
-
-  it "has one after adding one" do
-    instance_double("Book", :name => "my name")
-  end
-
 end

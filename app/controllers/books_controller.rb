@@ -8,14 +8,15 @@ class BooksController < ApplicationController
   # GET /books
   # GET /books.json
   def index
-
     @books = Book.all.page(params[:page]).per(10)
     @books.each do |book|
       book.update(rank: book.taken + book.likes_counter)
     end
     @top_books = Book.all.order('rank desc)').limit(5)
-    @search = params["query"]
-    @books = Book.full_text_search(@search).page(params[:page]).per(10) if @search.present?
+    @search = params['query']
+    if @search.present?
+      @books = Book.full_text_search(@search).page(params[:page]).per(10)
+    end
   end
 
   # GET /books/1
@@ -42,7 +43,8 @@ class BooksController < ApplicationController
     @book.user_id = current_user.id
     respond_to do |format|
       if @book.save
-        format.html { redirect_to @book, notice: 'Book was successfully created.' }
+        format.html { redirect_to @book,
+                                  notice: 'Book was successfully created.' }
         format.json { render :show, status: :created, location: @book }
       else
         format.html { render :new }
@@ -56,7 +58,8 @@ class BooksController < ApplicationController
   def update
     respond_to do |format|
       if @book.update(book_params)
-        format.html { redirect_to @book, notice: 'Book was successfully updated.' }
+        format.html { redirect_to @book,
+                                  notice: 'Book was successfully updated.' }
         format.json { render :show, status: :ok, location: @book }
       else
         format.html { render :edit }
@@ -70,7 +73,9 @@ class BooksController < ApplicationController
   def destroy
     @book.destroy
     respond_to do |format|
-      format.html { redirect_to books_url, notice: 'Book was successfully destroyed.' }
+      format.html { redirect_to books_url,
+                                notice: 'Book was successfully destroyed.'
+      }
       format.json { head :no_content }
     end
   end

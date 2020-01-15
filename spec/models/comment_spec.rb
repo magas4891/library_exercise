@@ -1,4 +1,4 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
 RSpec.describe Comment, type: :model do
   let!(:user) { create(:valid_user) }
@@ -16,16 +16,16 @@ RSpec.describe Comment, type: :model do
     it { is_expected.to validate_presence_of(:comment) }
   end
 
-  context "creating" do
-    it " with valid params is VALID" do
+  context 'creating' do
+    it ' with valid params is VALID' do
       expect(comment).to be_valid
     end
     it 'without comment is INVALID' do
-      expect(comment = build(:valid_comment, comment: nil)).to_not be_valid
+      expect(build(:valid_comment, comment: nil)).to_not be_valid
     end
   end
 
-  context "deleting" do
+  context 'deleting' do
     it 'count of comments became less on 1' do
       expect { comment.destroy }.to change { Comment.count }.by(-1)
     end

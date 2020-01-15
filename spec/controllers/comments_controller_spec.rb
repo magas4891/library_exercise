@@ -1,4 +1,4 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
 RSpec.describe CommentsController, type: :controller do
   let!(:user) { create(:valid_user) }
@@ -26,5 +26,4 @@ RSpec.describe CommentsController, type: :controller do
       end
     end
   end
-
 end

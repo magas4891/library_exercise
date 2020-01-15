@@ -1,4 +1,4 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
 RSpec.describe Like, type: :model do
   let!(:user) { create(:valid_user) }
@@ -12,13 +12,13 @@ RSpec.describe Like, type: :model do
     it { is_expected.to belong_to(:book) }
   end
 
-  context "creating" do
-    it " with valid params is VALID" do
+  context 'creating' do
+    it ' with valid params is VALID' do
       expect(like).to be_valid
     end
   end
 
-  context "deleting" do
+  context 'deleting' do
     it 'count of likes became less on 1' do
       expect { like.destroy }.to change { Like.count }.by(-1)
     end

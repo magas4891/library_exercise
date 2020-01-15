@@ -1,4 +1,4 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
 RSpec.describe LikesController, type: :controller do
   let!(:user) { create(:valid_user) }

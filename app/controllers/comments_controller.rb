@@ -3,8 +3,6 @@
 class CommentsController < ApplicationController
   before_action :authenticate_user!, only: [:create]
 
-  def index; end
-
   def create
     @book = Book.find(params[:book_id])
     @comments = Comment.where(book_id: @book.id)
@@ -14,9 +12,7 @@ class CommentsController < ApplicationController
     @comment.commenter = current_user.name
     @comment.save!
     respond_to do |format|
-      if @comment.save
-        format.js
-      end
+      format.js if @comment.save
     end
   end
 

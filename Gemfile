@@ -1,7 +1,9 @@
+# frozen_string_literal: true
+
 source 'https://rubygems.org'
 
 git_source(:github) do |repo_name|
-  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?("/")
+  repo_name = "#{repo_name}/#{repo_name}" unless repo_name.include?('/')
   "https://github.com/#{repo_name}.git"
 end
 
@@ -9,8 +11,8 @@ end
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 6.0'
 # Use Puma as the app server
-gem 'mongoid', '~> 7.0.5'
 gem 'bson_ext'
+gem 'mongoid', '~> 7.0.5'
 gem 'puma', '~> 3.7'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
@@ -18,19 +20,21 @@ gem 'sass-rails', '~> 5.0'
 gem 'uglifier', '>= 1.3.0'
 # See https://github.com/rails/execjs#readme for more supported runtimes
 # gem 'therubyracer', platforms: :ruby
-gem 'haml-rails', '~> 2.0', '>= 2.0.1'
+
+gem 'bootstrap', '~> 4.3.1'
+gem 'bootstrap_form', '~> 4.0'
 gem 'carrierwave', '~> 2.0'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
-gem 'faker', :git => 'https://github.com/faker-ruby/faker.git', :branch => 'master'
 gem 'devise'
-gem 'bootstrap', '~> 4.3.1'
+gem 'faker', :git => 'https://github.com/faker-ruby/faker.git',
+    :branch => 'master'
+gem 'font_awesome5_rails'
+gem 'haml-rails', '~> 2.0', '>= 2.0.1'
 gem 'jquery-rails'
-gem 'popper_js', '~> 1.14', '>= 1.14.5'
 gem 'kaminari-actionview'
 gem 'kaminari-mongoid'
-gem "bootstrap_form", "~> 4.0"
-gem 'font_awesome5_rails'
-
+gem 'popper_js', '~> 1.14', '>= 1.14.5'
+gem 'rubocop'
 
 # Use CoffeeScript for .coffee assets and views
 gem 'coffee-rails', '~> 5.0'
@@ -46,30 +50,27 @@ gem 'bootsnap', require: false
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 gem 'mongoid_search'
-gem 'simple_form'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
-  gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]
+  gem 'byebug', platforms: %i[mri mingw x64_mingw]
   # Adds support for Capybara system testing and selenium driver
-  gem 'rspec-rails', '~> 4.0.0.beta3'
-  gem 'factory_bot_rails'
-  gem 'database_cleaner', '~> 1.7'
-  gem 'shoulda-matchers'
   gem 'capybara', '~> 2.13'
-  gem 'selenium-webdriver'
+  gem 'database_cleaner', '~> 1.7'
+  gem 'factory_bot_rails'
   gem 'mongoid-rspec'
   gem 'rails-controller-testing'
+  gem 'rspec-rails', '~> 4.0.0.beta3'
+  gem 'selenium-webdriver'
+  gem 'shoulda-matchers'
 end
 
 group :development do
-  # Access an IRB console on exception pages or by using <%= console %> anywhere in the code.
-  gem 'web-console', '>= 3.3.0'
   gem 'listen', '>= 3.0.5', '< 3.2'
-  # Spring speeds up development by keeping your application running in the background. Reader more: https://github.com/rails/spring
   gem 'spring'
   gem 'spring-watcher-listen', '~> 2.0.0'
+  gem 'web-console', '>= 3.3.0'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem
-gem 'tzinfo-data', platforms: [:mingw, :mswin, :x64_mingw, :jruby]
+gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]

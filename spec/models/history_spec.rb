@@ -1,4 +1,4 @@
-require 'rails_helper'
+# frozen_string_literal: true
 
 RSpec.describe History, type: :model do
   let!(:user) { create(:valid_user) }
@@ -14,19 +14,21 @@ RSpec.describe History, type: :model do
 
   context 'validation' do
     it { is_expected.to have_field(:take_date).of_type(Date) }
-    it { is_expected.to have_field(:return_date).of_type(Date).with_default_value_of(nil) }
+    it { is_expected.to have_field(:return_date)
+      .of_type(Date).with_default_value_of(nil)
+    }
   end
 
-  context "creating" do
-    it " with valid params is VALID" do
+  context 'creating' do
+    it ' with valid params is VALID' do
       expect(history).to be_valid
     end
     it 'without return_date is VALID' do
-      expect(history = build(:valid_history, return_date: nil)).to be_valid
+      expect(build(:valid_history, return_date: nil)).to be_valid
     end
   end
 
-  context "deleting" do
+  context 'deleting' do
     it 'count of history became less on 1' do
       expect { history.destroy }.to change { History.count }.by(-1)
     end
