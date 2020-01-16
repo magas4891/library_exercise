@@ -20,7 +20,7 @@ end
   p Book.last.name
 end
 
-Dir.chdir("#{Rails.root}/public/uploads/book/cover/")
+Dir.chdir("#{Rails.root}/lib/assets/images/")
 images_path = Dir['*.*']
 Book.all.zip(images_path).each do |book, image|
   book.cover = open(image)
