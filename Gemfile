@@ -28,6 +28,7 @@ gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
 gem 'devise'
 gem 'faker', :git => 'https://github.com/faker-ruby/faker.git',
     :branch => 'master'
+gem "fog-aws"
 gem 'font_awesome5_rails'
 gem 'haml-rails', '~> 2.0', '>= 2.0.1'
 gem 'jquery-rails'
