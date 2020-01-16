@@ -53,9 +53,11 @@
         = render 'historys/histories'
 
   - if user_signed_in?
-    -#- if current_user.id == @book.id
     .func-links
       = link_to 'Edit', edit_book_path(@book), class: 'far'
+      - if @book.user_id == current_user.id
+        |
+        = link_to 'Remove', book_path(@book), class: 'far', method: :delete
   .back
     = link_to books_path do
-      = image_tag "arrow-back.png", title: "Back to main", size: "64x64"#, :class => "swing"
+      = image_tag "arrow-back.png", title: "Back to main", size: "64x64"

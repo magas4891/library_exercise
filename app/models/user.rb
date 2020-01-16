@@ -4,7 +4,7 @@ class User
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  has_many :books, dependent: :destroy
+  has_many :books
   has_many :likes
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
